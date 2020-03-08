@@ -10523,6 +10523,11 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
+vpnrpc@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/vpnrpc/-/vpnrpc-1.0.1.tgz#21e6f3d175fbec8f71b1045c9ff57fec0695b983"
+  integrity sha512-CuKEueMphsIEcODTBCE+29DChRkcL0LvP9qrVMzdHkC1pM/DF96nFxuZ8oInJ9ELrsLvf+777brpipfcKsGV9Q==
+
 w3c-hr-time@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/w3c-hr-time/-/w3c-hr-time-1.0.2.tgz#0a89cdf5cc15822df9c360543676963e0cc308cd"
