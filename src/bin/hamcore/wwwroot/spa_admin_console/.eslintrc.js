@@ -5,7 +5,7 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'standard',
+    'standard-with-typescript',
     'plugin:prettier/recommended',
     'prettier/@typescript-eslint'
   ],
@@ -19,12 +19,9 @@ module.exports = {
       jsx: true
     },
     ecmaVersion: 2018,
-    sourceType: 'module'
+    sourceType: 'module',
+    project: './tsconfig.json'
   },
-  plugins: [
-    'react',
-    '@typescript-eslint'
-  ],
-  rules: {
-  }
+  plugins: ['react', '@typescript-eslint'],
+  rules: {}
 }
