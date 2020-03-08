@@ -5,4 +5,4 @@ COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 # Enable node_modules commands
-ENV PATH=$PATH:/app/node_modules/.bin
+ENV PATH=/app/node_modules/.bin:$PATH
