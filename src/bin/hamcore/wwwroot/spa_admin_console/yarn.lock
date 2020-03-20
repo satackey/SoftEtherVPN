@@ -1603,7 +1603,7 @@
     "@typescript-eslint/typescript-estree" "2.24.0"
     eslint-scope "^5.0.0"
 
-"@typescript-eslint/parser@^2.10.0", "@typescript-eslint/parser@^2.19.2", "@typescript-eslint/parser@^2.24.0":
+"@typescript-eslint/parser@^2.10.0", "@typescript-eslint/parser@^2.24.0":
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-2.24.0.tgz#2cf0eae6e6dd44d162486ad949c126b887f11eb8"
   integrity sha512-H2Y7uacwSSg8IbVxdYExSI3T7uM1DzmOn2COGtCahCC3g8YtM1xYAPi2MAHyfPs61VKxP/J/UiSctcRgw4G8aw==
@@ -3995,12 +3995,12 @@ eslint-config-react-app@^5.2.0:
   dependencies:
     confusing-browser-globals "^1.0.9"
 
-eslint-config-standard-with-typescript@^14.0.0:
-  version "14.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-standard-with-typescript/-/eslint-config-standard-with-typescript-14.0.0.tgz#8952df9673eed1ffe59e82859002d540120bf547"
-  integrity sha512-SDmsqQWqu4h62rvWCBFsntdnXJgmZyLjsmgYfzQCPAkBfEEKrobr5DDW0mquVZ3j1hcyzhbrPmX3VNJRYBPHFw==
+eslint-config-standard-with-typescript@^15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-standard-with-typescript/-/eslint-config-standard-with-typescript-15.0.0.tgz#dcdee810814e246654a93f364f6a331b8ab64846"
+  integrity sha512-aR5+FHq/6/0SxR1DGGwzTSnoldbzjwCf7Ts8HR3gTcP4HP1zq2lqfL653xFjB2udnWqTCqvO1H/bY3gUDWluLQ==
   dependencies:
-    "@typescript-eslint/parser" "^2.19.2"
+    "@typescript-eslint/parser" "^2.24.0"
     eslint-config-standard "^14.1.0"
 
 eslint-config-standard@^14.1.0:
