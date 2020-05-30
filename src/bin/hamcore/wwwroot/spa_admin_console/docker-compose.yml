@@ -9,3 +9,8 @@ services:
     ports:
       - ${PORT}:3000
     command: yarn start
+
+  softethervpn_server:
+    build: '../../../../..'
+    ports:
+      - 5555:5555

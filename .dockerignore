@@ -1,0 +1,4 @@
+.git
+/src/bin/hamcore/wwwroot/spa_admin_console
+Dockerfile
+.dockerignore
