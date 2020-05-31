@@ -17,6 +17,11 @@ const App: React.FC = () => {
   const readyToLogin =
     serverUrl !== '' && virtualHubWillBeUsed !== '' && password !== ''
 
+  const disabledServerUrl = loggingIn
+  const disabledVirtualHub = connectAsAdmin || loggingIn
+  const disabledConnectAsAdmin = specifiedAdminByInput || loggingIn
+  const disabledPassword = loggingIn
+
   return (
     // https://codepen.io/Uipiki/pen/VNOoqB
     <div
@@ -44,6 +49,7 @@ const App: React.FC = () => {
                         type="text"
                         placeholder="https://your-vpn-server.example.com:5555"
                         value={serverUrl}
+                        disabled={disabledServerUrl}
                         onChange={e => setServerUrl(e.target.value)}
                       />
                     </div>
@@ -60,7 +66,7 @@ const App: React.FC = () => {
                         type="text"
                         placeholder="VPN"
                         value={virtualHubWillBeUsed}
-                        disabled={connectAsAdmin}
+                        disabled={disabledVirtualHub}
                         onChange={e => setStoredVirtualHub(e.target.value)}
                       />
                     </div>
@@ -70,10 +76,12 @@ const App: React.FC = () => {
                           className="uk-checkbox"
                           type="checkbox"
                           checked={connectAsAdmin || specifiedAdminByInput}
-                          disabled={specifiedAdminByInput}
+                          disabled={disabledConnectAsAdmin}
                           onChange={() => setConnectAsAdmin(!connectAsAdmin)}
                         />
-                        Connect as administrator
+                        <span className="uk-margin-small-left">
+                          Connect as an administrator
+                        </span>
                       </label>
                     </div>
                   </div>
@@ -89,6 +97,7 @@ const App: React.FC = () => {
                         type="password"
                         placeholder=""
                         value={password}
+                        disabled={disabledPassword}
                         onChange={e => setPassword(e.target.value)}
                       />
                     </div>
