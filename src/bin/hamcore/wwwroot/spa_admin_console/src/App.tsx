@@ -1,123 +1,17 @@
-import React, { useState } from 'react'
-import classNames from 'classnames'
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
 import './App.css'
+import Login from './pages/login'
 
-const App: React.FC = () => {
-  const [serverUrl, setServerUrl] = useState<string>(
-    `https://${window.location.hostname}:${window.location.port}`
-  )
-  const [connectAsAdmin, setConnectAsAdmin] = useState(true)
-  const [storedVirtualHub, setStoredVirtualHub] = useState(``)
-  const [password, setPassword] = useState(``)
-  const [loggingIn, setLoggingIn] = useState(false)
-
-  const virtualHubWillBeUsed = connectAsAdmin
-    ? `administrator`
-    : storedVirtualHub
-  const specifiedAdminByInput = storedVirtualHub === `administrator`
-  const readyToLogin =
-    serverUrl !== '' && virtualHubWillBeUsed !== '' && password !== ''
-
-  return (
-    <div
-      className="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade"
-      uk-height-viewport="true"
-    >
-      <div className="uk-width-1-1">
-        <div className="uk-container">
-          <div className="uk-grid-margin uk-grid uk-grid-stack" uk-grid="true">
-            <div className="uk-width-1-1@m">
-              <div className="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body">
-                <h3 className="uk-card-title uk-text-center">
-                  SoftEther VPN admin console
-                </h3>
-                <form>
-                  <div className="uk-margin">
-                    Server URL
-                    <div className="uk-inline uk-width-1-1">
-                      <span
-                        className="uk-form-icon"
-                        uk-icon="icon: server"
-                      ></span>
-                      <input
-                        className="uk-input"
-                        type="text"
-                        placeholder="https://your-vpn-server.example.com:5555"
-                        value={serverUrl}
-                        onChange={e => setServerUrl(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <div className="uk-margin">
-                    Virtual Hub Name
-                    <div className="uk-inline uk-width-1-1">
-                      <span
-                        className="uk-form-icon"
-                        uk-icon="icon: social"
-                      ></span>
-                      <input
-                        className="uk-input"
-                        type="text"
-                        placeholder="VPN"
-                        value={virtualHubWillBeUsed}
-                        disabled={connectAsAdmin}
-                        onChange={e => setStoredVirtualHub(e.target.value)}
-                      />
-                    </div>
-                    <div className="uk-margin-bottom uk-margin-small-top uk-grid-small uk-child-width-auto uk-grid">
-                      <label>
-                        <input
-                          className="uk-checkbox"
-                          type="checkbox"
-                          checked={connectAsAdmin || specifiedAdminByInput}
-                          disabled={specifiedAdminByInput}
-                          onChange={() => setConnectAsAdmin(!connectAsAdmin)}
-                        />
-                        Connect as administrator
-                      </label>
-                    </div>
-                  </div>
-                  <div className="uk-margin">
-                    Password
-                    <div className="uk-inline uk-width-1-1">
-                      <span
-                        className="uk-form-icon"
-                        uk-icon="icon: lock"
-                      ></span>
-                      <input
-                        className="uk-input"
-                        type="password"
-                        placeholder=""
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <div className="uk-margin uk-text-center">
-                    <button
-                      className={classNames(
-                        `uk-button`,
-                        `uk-width-2-3`,
-                        `tm-button-default`,
-                        { [`uk-button-primary`]: readyToLogin }
-                      )}
-                      disabled={!readyToLogin || loggingIn}
-                      onClick={e => {
-                        setLoggingIn(true)
-                        e.preventDefault()
-                      }}
-                    >
-                      {loggingIn ? <div uk-spinner="true"></div> : 'Login'}
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
+const App: React.FC = () => (
+  <Router>
+    <Switch>
+      <Route path="/login">
+        <Login />
+      </Route>
+    </Switch>
+  </Router>
+)
 
 export default App
