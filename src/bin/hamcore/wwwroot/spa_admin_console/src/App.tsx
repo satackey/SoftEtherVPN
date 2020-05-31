@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import classNames from 'classnames'
 import './App.css'
 
 const App: React.FC = () => {
@@ -8,17 +9,14 @@ const App: React.FC = () => {
   const [connectAsAdmin, setConnectAsAdmin] = useState(true)
   const [storedVirtualHub, setStoredVirtualHub] = useState(``)
   const [password, setPassword] = useState(``)
+  const [loggingIn, setLoggingIn] = useState(false)
 
   const virtualHubWillBeUsed = connectAsAdmin
     ? `administrator`
     : storedVirtualHub
-
   const specifiedAdminByInput = storedVirtualHub === `administrator`
-
   const readyToLogin =
     serverUrl !== '' && virtualHubWillBeUsed !== '' && password !== ''
-
-  const [loggingIn, setLoggingIn] = useState(false)
 
   return (
     <div
@@ -97,8 +95,13 @@ const App: React.FC = () => {
                   </div>
                   <div className="uk-margin uk-text-center">
                     <button
-                      className="uk-button uk-button-primary uk-button uk-width-2-3 tm-button-default"
-                      disabled={!readyToLogin}
+                      className={classNames(
+                        `uk-button`,
+                        `uk-width-2-3`,
+                        `tm-button-default`,
+                        { [`uk-button-primary`]: readyToLogin }
+                      )}
+                      disabled={!readyToLogin || loggingIn}
                       onClick={e => {
                         setLoggingIn(true)
                         e.preventDefault()
