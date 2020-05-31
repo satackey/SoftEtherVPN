@@ -1,7 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
 
 const App: React.FC = () => {
+  const [serverUrl, setServerUrl] = useState<string>(
+    `https://${window.location.hostname}:${window.location.port}`
+  )
+  const [connectAsAdmin, setConnectAsAdmin] = useState(true)
+  const [storedVirtualHub, setStoredVirtualHub] = useState(``)
+  const [password, setPassword] = useState(``)
+
+  const virtualHubWillBeUsed = connectAsAdmin
+    ? `administrator`
+    : storedVirtualHub
+
+  const specifiedAdminByInput = storedVirtualHub === `administrator`
+
+  const readyToLogin =
+    serverUrl !== '' && virtualHubWillBeUsed !== '' && password !== ''
+
+  const [loggingIn, setLoggingIn] = useState(false)
+
   return (
     <div
       className="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade"
@@ -27,6 +45,8 @@ const App: React.FC = () => {
                         className="uk-input"
                         type="text"
                         placeholder="https://your-vpn-server.example.com:5555"
+                        value={serverUrl}
+                        onChange={e => setServerUrl(e.target.value)}
                       />
                     </div>
                   </div>
@@ -41,11 +61,20 @@ const App: React.FC = () => {
                         className="uk-input"
                         type="text"
                         placeholder="VPN"
+                        value={virtualHubWillBeUsed}
+                        disabled={connectAsAdmin}
+                        onChange={e => setStoredVirtualHub(e.target.value)}
                       />
                     </div>
                     <div className="uk-margin-bottom uk-margin-small-top uk-grid-small uk-child-width-auto uk-grid">
                       <label>
-                        <input className="uk-checkbox" type="checkbox" />
+                        <input
+                          className="uk-checkbox"
+                          type="checkbox"
+                          checked={connectAsAdmin || specifiedAdminByInput}
+                          disabled={specifiedAdminByInput}
+                          onChange={() => setConnectAsAdmin(!connectAsAdmin)}
+                        />
                         Connect as administrator
                       </label>
                     </div>
@@ -61,16 +90,22 @@ const App: React.FC = () => {
                         className="uk-input"
                         type="password"
                         placeholder=""
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
                       />
                     </div>
                   </div>
                   <div className="uk-margin uk-text-center">
-                    <button className="uk-button uk-button-primary uk-button uk-width-2-3 tm-button-default">
-                      Login
+                    <button
+                      className="uk-button uk-button-primary uk-button uk-width-2-3 tm-button-default"
+                      disabled={!readyToLogin}
+                      onClick={e => {
+                        setLoggingIn(true)
+                        e.preventDefault()
+                      }}
+                    >
+                      {loggingIn ? <div uk-spinner="true"></div> : 'Login'}
                     </button>
-                  </div>
-                  <div className="uk-text-small">
-                    {/* Not registered? <a href="#">Create an account</a> */}
                   </div>
                 </form>
               </div>
