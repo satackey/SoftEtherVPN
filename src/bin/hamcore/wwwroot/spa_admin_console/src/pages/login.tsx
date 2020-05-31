@@ -15,6 +15,7 @@ const App: React.FC = () => {
     : storedVirtualHub
   const specifiedAdminByInput = storedVirtualHub === `administrator`
   const readyToLogin =
+    // Todo: Add serverUrl validation
     serverUrl !== '' && virtualHubWillBeUsed !== '' && password !== ''
 
   const disabledServerUrl = loggingIn
