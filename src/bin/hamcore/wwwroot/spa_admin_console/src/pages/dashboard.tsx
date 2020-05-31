@@ -6,14 +6,14 @@ import {
   // Link
 } from 'react-router-dom'
 
-import Index from './dashboard/index'
+import { Root } from './dashboard/Root'
 
-export const App: React.FC = () => (
+export const Dashboard: React.FC = () => (
   <Router>
     <div>SideBar</div>
     <Switch>
       <Route path="/">
-        <Index />
+        <Root />
       </Route>
     </Switch>
   </Router>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
 
-const App: React.FC = () => {
+export const Login: React.FC = () => {
   const [serverUrl, setServerUrl] = useState<string>(
     `https://${window.location.hostname}:${window.location.port}`
   )
@@ -129,5 +129,3 @@ const App: React.FC = () => {
     </div>
   )
 }
-
-export default App
