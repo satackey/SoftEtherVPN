@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
+import { bindActionCreators } from 'redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { login } from '../states/ducks/credentials/actions'
 
 export const Login: React.FC = () => {
+  const dispatch = useDispatch()
   const [serverUrl, setServerUrl] = useState<string>(
     `https://${window.location.hostname}:${window.location.port}`
   )
@@ -22,6 +26,10 @@ export const Login: React.FC = () => {
   const disabledVirtualHub = connectAsAdmin || loggingIn
   const disabledConnectAsAdmin = specifiedAdminByInput || loggingIn
   const disabledPassword = loggingIn
+
+  const requestLogin = () => {
+    dispatch
+  }
 
   return (
     // https://codepen.io/Uipiki/pen/VNOoqB
@@ -114,10 +122,11 @@ export const Login: React.FC = () => {
                       disabled={!readyToLogin || loggingIn}
                       onClick={e => {
                         setLoggingIn(true)
+                        requestLogin()
                         e.preventDefault()
                       }}
                     >
-                      {loggingIn ? <div uk-spinner="true"></div> : 'Login'}
+                      {loggingIn ? <div data-uk-spinner></div> : 'Login'}
                     </button>
                   </div>
                 </form>
