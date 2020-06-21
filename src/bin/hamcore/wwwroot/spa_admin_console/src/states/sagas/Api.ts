@@ -1,7 +1,12 @@
 import { VpnServerRpc } from 'vpnrpc'
 
-import { LoginCredentials } from '../ducks/credentials/types'
 import * as errors from './ApiErrors'
+
+export interface LoginCredentials {
+  serverUrl: string
+  virtualHub: string
+  password: string
+}
 
 export async function login(
   loginCredentials: LoginCredentials

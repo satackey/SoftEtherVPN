@@ -6,7 +6,7 @@ import {
   // Link
 } from 'react-router-dom'
 
-import { Root } from './dashboard/Root'
+import { Root } from './Root'
 
 export const Dashboard: React.FC = () => (
   <Router>

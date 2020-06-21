@@ -1,18 +1,11 @@
-import {
-  LOGIN_REQUEST,
-  StartLoginAction,
-  LoginFailureAction,
-  LOGIN_FAILURE,
-  LoginSuccessAction,
-  LOGIN_SUCCESS
-} from './types'
+import { Actions, ActionTypes } from './types'
 
-export const login = (
+export const startLogin = (
   serverUrl: string,
   virtualHub: string,
   password: string
-): StartLoginAction => ({
-  type: LOGIN_REQUEST,
+): Actions['StartLoginAction'] => ({
+  type: ActionTypes.LOGIN_REQUEST,
   payload: {
     serverUrl,
     virtualHub,
@@ -20,13 +13,13 @@ export const login = (
   }
 })
 
-export const loginFailed = (error: Error): LoginFailureAction => ({
-  type: LOGIN_FAILURE,
+export const loginFailed = (error: Error): Actions['LoginFailureAction'] => ({
+  type: ActionTypes.LOGIN_FAILURE,
   payload: {
     error
   }
 })
 
-export const loginSucceeded = (): LoginSuccessAction => ({
-  type: LOGIN_SUCCESS
+export const loginSucceeded = (): Actions['LoginSuccessAction'] => ({
+  type: ActionTypes.LOGIN_SUCCESS
 })

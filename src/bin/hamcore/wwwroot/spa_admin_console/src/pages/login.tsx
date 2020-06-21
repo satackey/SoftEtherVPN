@@ -1,11 +1,21 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
-import { bindActionCreators } from 'redux'
-import { useSelector, useDispatch } from 'react-redux'
-import { login } from '../states/ducks/credentials/actions'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { startLogin } from '../states/ducks/credentials/actions'
+import { RootState } from '../states/ducks/rootReducer'
 
 export const Login: React.FC = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
+  const authState = useSelector((state: RootState) => {
+    console.log(state)
+    return state.credentials.get(`authState`)
+  })
+  console.log(authState)
+  if (authState === 'succeeded') {
+    history.push(`/dashboard`)
+  }
   const [serverUrl, setServerUrl] = useState<string>(
     `https://${window.location.hostname}:${window.location.port}`
   )
@@ -27,8 +37,8 @@ export const Login: React.FC = () => {
   const disabledConnectAsAdmin = specifiedAdminByInput || loggingIn
   const disabledPassword = loggingIn
 
-  const requestLogin = () => {
-    dispatch
+  const requestLogin = (): void => {
+    dispatch(startLogin(serverUrl, virtualHubWillBeUsed, password))
   }
 
   return (

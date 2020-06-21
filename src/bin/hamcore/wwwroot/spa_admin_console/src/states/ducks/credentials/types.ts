@@ -1,28 +1,39 @@
 import { Action } from 'redux'
+import { RecordOf } from 'immutable'
 
-export interface LoginCredentials {
-  serverUrl: string
-  virtualHub: string
-  password: string
-}
-
-export interface CredentialsState {
-  requestedLogin: boolean
-  connected: boolean
-  loggedIn: boolean
-  serverUrl: string
-  virtualHub: string
-  password: string
-}
+//
+// ActionTypes
 
 export const LOGIN_REQUEST = `LOGIN_REQUEST` as const
 export const LOGIN_SUCCESS = `LOGIN_SUCCESS` as const
 export const LOGIN_FAILURE = `LOGIN_FAILURE` as const
 export const LOGGED_OUT = `LOGGED_OUT` as const
 
+export const ActionTypes = {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGGED_OUT
+}
+
+export type State = RecordOf<{
+  authState: `unauthorized` | `requested` | `succeeded` | `failed`
+  error?: Error
+  serverUrl: string
+  virtualHub: string
+  password: string
+}>
+
+//
+// Actions
+
 export interface StartLoginAction extends Action {
   type: typeof LOGIN_REQUEST
-  payload: LoginCredentials
+  payload: {
+    serverUrl: string
+    virtualHub: string
+    password: string
+  }
 }
 
 export interface LoginSuccessAction extends Action {
@@ -42,4 +53,15 @@ export interface LogoutAction extends Action {
   payload?: never
 }
 
-export type CredentialsActionTypes = StartLoginAction | LogoutAction
+export interface Actions {
+  StartLoginAction: StartLoginAction
+  LoginSuccessAction: LoginSuccessAction
+  LoginFailureAction: LoginFailureAction
+  LogoutAction: LogoutAction
+}
+
+export type SomeAction =
+  | StartLoginAction
+  | LoginSuccessAction
+  | LoginFailureAction
+  | LogoutAction

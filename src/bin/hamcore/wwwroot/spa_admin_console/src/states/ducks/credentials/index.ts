@@ -1,4 +1,6 @@
-import * as credentialTypes from './types'
-import { credentialsReducer } from './reducers'
+import { ActionTypes, Actions, SomeAction } from './types'
+import { reducer } from './reducers'
 
-export { credentialsReducer, credentialTypes }
+export type CledetialsActions = Actions
+export type CredentialsSomeAction = SomeAction
+export { ActionTypes as CredentialsActionTypes, reducer as credentialsReducer }
